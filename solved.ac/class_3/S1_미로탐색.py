@@ -1,25 +1,34 @@
-N,M = map(int,input().split())
-list_maze = []
-for i in range(N) :
-    K = list(map(int,input()))
-    list_maze.append(K)
+import sys
+from collections import deque
 
-x_index = 0
-y_index = 0
-count = 0
-result = ''
-empty_list = []
+input = sys.stdin.readline
 
-def search_index(list_maze,empty_list,x_index,y_index) :
-    if(x_index!=0) : 
-        if(list_maze[x_index-1][y_index]==1) :
-            empty_list.append(x_index-1,y_index,)
-    if(x_index!=N) :
-        list_maze[x_index+1][y_index]
-    if(y_index!=0) :
-        list_maze[x_index][y_index-1]
-    if(y_index!=M) :
-        list_maze[x_index][y_index+1]
-while(result!='Finish') :
-    if(list_maze[x_index][y_index]==1) :
-        
+n, m = map(int, input().split())
+graph = []
+
+for _ in range(n):
+    graph.append(list(map(int, input().rstrip()))) # readline의 경우 맨 뒤에 '\n'까지 입력받으므로 제거해줘야 함
+
+# 상하좌우
+dx = [-1, 1, 0, 0] 
+dy = [0, 0, -1, 1]
+
+def bfs(x, y):
+    
+    queue = deque()
+    queue.append((x,y))
+
+    while queue:
+        x, y = queue.popleft()
+
+        for i in range(4):
+            nx = x + dx[i]
+            ny = y + dy[i]
+
+            if 0 <= nx < n and 0 <= ny < m and graph[nx][ny] == 1:
+                queue.append((nx, ny))
+                graph[nx][ny] = graph[x][y] + 1
+    
+    return graph[n-1][m-1]
+
+print(bfs(0,0))
