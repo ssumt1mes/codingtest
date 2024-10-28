@@ -2,8 +2,8 @@ from collections import deque
 T = int(input())
 dx = [0,0,1,-1]
 dy = [1,-1,0,0]
-count = 0
 
+#bfs로 풀었음
 def find_bug(list,i,j,M,N) :
     queue = deque()
     queue.append((i,j))
@@ -21,6 +21,7 @@ def find_bug(list,i,j,M,N) :
     return queue
 
 for _ in range(T) :
+    count = 0
     M,N,K = map(int,input().split())
     list = [[0]*N for _ in range(M)]
     for _ in range(K) :

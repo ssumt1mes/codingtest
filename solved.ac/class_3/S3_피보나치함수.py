@@ -1,18 +1,12 @@
-import sys
-N = int(sys.stdin.readline().rstrip())
-def fibonacci(n,zero_list,one_list) :
-    if(n==0) :
-        zero_list.append(0)
-        return 0
-    elif(n==1) :
-        one_list.append(1)
-        return 1
-    else :
-        return fibonacci(n-1,zero_list,one_list) + fibonacci(n-2,zero_list,one_list)
-    
-for i in range(N) :
-    n = int(sys.stdin.readline().rstrip())
-    zero_list = []
-    one_list=  []
-    fibonacci(n,zero_list,one_list)
-    print(len(zero_list),len(one_list))
+t = int(input())
+ 
+for _ in range(t):
+    cnt_0 = [1,0]
+    cnt_1 = [0,1]
+    n = int(input())
+    if n>1:
+        for i in range(n-1):
+            cnt_0.append(cnt_1[-1])
+            cnt_1.append(cnt_0[-2]+cnt_1[-1]) 
+ 
+    print(cnt_0[n], cnt_1[n])

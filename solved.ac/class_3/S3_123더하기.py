@@ -1,14 +1,17 @@
-N = int(input())
-list = []
-for i in range(N) :
-    list.append(int(input()))
+import sys
+input = sys.stdin.readline
 
-def onetwothree(number) :
-    count = 0
-    number_list = [[1]*number]
-    print(number_list)
+def func(x):
+  if x==1:
+    return 1
+  elif x==2:
+    return 2
+  elif x==3:
+    return 4
+  else:
+    return func(x-1)+func(x-2)+func(x-3)
 
-
-
-for i in list :
-    onetwothree(i)
+t = int(input())
+for _ in range(t):
+  n = int(input())
+  print(func(n))

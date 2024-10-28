@@ -6,5 +6,4 @@ before = 0
 for i in list_ATM :
     sum += i + before
     before += i
-    print(before,sum)
 print(sum)
